@@ -150,24 +150,22 @@ public class BattleLogic : MonoBehaviour
 
 
         // EXAMPLE: Randomly choose either the the hero or the monster to hit the other.
-        if( monster.initiative > hero.initiative )
+        if (Random.value > 0.5f)
         {
             // Monster hits hero (HINT: See TakeDamage( amount ) method in CharacterStats script)
             hero.TakeDamage(monster.damage);
             // Check hero health.
-            if( hero.health <= 0f )
+            if (hero.health <= 0f)
             {
                 // If the heros' health is less than or equal to zero, then destroy the hero and output 'the monster has defeated the hero'.
                 // HINT: Destroy( ... );
-
                 log = monster.name + " defeated " + hero.name + ".";
                 Destroy(hero.gameObject);
             }
             else
             {
                 // If the heros' health is greater than zero, then output 'the monster hit the hero for X points of damage'.
-                 log = monster.name + " hit " + hero.name + " for " + monster.damage + " points of damage.";
-                //log(monster.name + " hit " + hero.name + " for " + monster.damage + " points of damage.");
+                log = monster.name + " hit " + hero.name + " for " + monster.damage + " points of damage.";
             }
         }
         else
@@ -175,7 +173,7 @@ public class BattleLogic : MonoBehaviour
             // Hero hits monster (HINT: See TakeDamage( amount ) method in CharacterStats script)
             monster.TakeDamage(hero.damage);
             // Check if monster health is less than or equal to zero.
-            if( monster.health <= 0)
+            if (monster.health <= 0f)
             {
                 log = hero.name + " defeated " + monster.name + ".";
                 Destroy(monster.gameObject);
@@ -183,42 +181,6 @@ public class BattleLogic : MonoBehaviour
             // If so, destroy the monster gameobject and output '{hero name} defeated {monster name}'
             // Else, output '{hero name} hit {monster name} for {hero damage} points of damage.'
             log = hero.name + " hit " + monster.name + " for " + hero.damage + " points of damage.";
-        }
-        if (monster.initiative == hero.initiative)
-        {
-            if (Random.value > 0.5f)
-            {
-                hero.TakeDamage(monster.damage);
-                // Check hero health.
-                if (hero.health <= 0f)
-                {
-                    // If the heros' health is less than or equal to zero, then destroy the hero and output 'the monster has defeated the hero'.
-                    // HINT: Destroy( ... );
-
-                    log = monster.name + " defeated " + hero.name + ".";
-                    Destroy(hero.gameObject);
-                }
-                else
-                {
-                    // If the heros' health is greater than zero, then output 'the monster hit the hero for X points of damage'.
-                    log = monster.name + " hit " + hero.name + " for " + monster.damage + " points of damage.";
-                    //log(monster.name + " hit " + hero.name + " for " + monster.damage + " points of damage.");
-                }
-            }
-            else
-            {
-                // Hero hits monster (HINT: See TakeDamage( amount ) method in CharacterStats script)
-                monster.TakeDamage(hero.damage);
-                // Check if monster health is less than or equal to zero.
-                if (monster.health <= 0)
-                {
-                    log = hero.name + " defeated " + monster.name + ".";
-                    Destroy(monster.gameObject);
-                }
-                // If so, destroy the monster gameobject and output '{hero name} defeated {monster name}'
-                // Else, output '{hero name} hit {monster name} for {hero damage} points of damage.'
-                log = hero.name + " hit " + monster.name + " for " + hero.damage + " points of damage.";
-            }
         }
 
 
